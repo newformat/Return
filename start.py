@@ -30,10 +30,9 @@ bot_2 = {
     'hit': 0,
     'specs':0
 }
-"""
+
 # мишень / 0 - мимо
 target = (0,1,2,3,4,5)
-
 
 # ПРОЦЕСС ИГРЫ
 while (True):
@@ -78,7 +77,7 @@ while (True):
     else:
         print("\nБот " + bot['name'] + "; кол-во патронов - " + str(bot['number of rounds']))
         print("Бот " + bot_2['name'] + "; кол-во патронов - " + str(bot_2['number of rounds']) + '\n')
-"""
+
 
 # результаты
 tm.sleep(1)
