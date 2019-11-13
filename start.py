@@ -38,6 +38,8 @@ target = (0,1,2,3,4,5)
 table_result = []
 
 
+
+
 # ПРОЦЕСС ИГРЫ
 while (True):
     tm.sleep(1)
