@@ -1,10 +1,3 @@
-'''
-CTRL + /
-обвести код, который надо закоментировать и далее горячие клавиши контрол-слеш
-раскоментировать также
-'''
-
-
 # написать игру, в которую играет бот и стреляет в мешень.
 #у бота есть N-кол-во выстрелов. когда выстрелы кончаются - показывается результат.
 
@@ -16,11 +9,11 @@ bot = {
     'name':'Вася',                  # имя бота
     'pistol_model':'desrt eagle',   # пистолет бота
     'number of rounds':10,          # кол-во патронов
-    'miss':0,  # промахи
-    'hit':0,   # попадания
-    'specs':0   # очки
-
+    'miss':0,                       # промахи
+    'hit':0,                        # попадания
+    'specs':0                       # очки
 }
+
 # бот Петя
 bot_2 = {
     'name': 'Петя',
@@ -31,21 +24,13 @@ bot_2 = {
     'specs':0
 }
 
-# мишень / 0 - мимо
-target = (0,1,2,3,4,5)
+target = (0,1,2,3,4,5)  # мишень / 0 - мимо
 
-# ПРОЦЕСС ИГРЫ
-while (True):
-    tm.sleep(1)
-
-    # боты стреляют в мишень
-    bot_shot = target[rnd.randrange(0,6)]   # Бот Вася
-    bot_2_shot = target[rnd.randrange(0,6)] # Бот Петя
-    tm.sleep(1)
-
-    # проверяем, куда попал Вася
+# проверяем, куда попал бот
+def where_to_hit(bot):
+    bot_shot = target[rnd.randrange(0, 6)]
     print("Бот " + bot['name'] + " стрельнул...  ( 1 ( 2 ( 3 ) 4 ) 5 )")
-    tm.sleep(1)
+    tm.sleep(3)
     if bot_shot != 0:
         bot['hit'] = bot['hit'] + 1
         bot['specs'] = bot['specs'] + bot_shot
@@ -55,20 +40,13 @@ while (True):
         print("Бот " + bot['name'] + " промазал...")
         tm.sleep(1)
     bot['number of rounds'] -= 1
-    print()
 
-    # проверяем, куда попал Петя
-    print("Бот " + bot_2['name'] + " стрельнул... ( 1 ( 2 ( 3 ) 4 ) 5 )")
+# ПРОЦЕСС ИГРЫ
+while (True):
     tm.sleep(1)
-    if bot_2_shot != 0:
-        bot_2['hit'] = bot_2['hit'] + 1
-        bot_2['specs'] = bot_2['specs'] + bot_2_shot
-        print("Бот " + bot_2['name'] + " попал! Получает - " + str(bot_2_shot) +" очк.!")
-    else:
-        bot_2['miss'] = bot_2['miss'] + 1  # запись промахов в ОБЩИЙ результат за игры.
-        print("Бот " + bot_2['name'] + " промазал...")
-        tm.sleep(1)
-    bot_2['number of rounds'] -= 1
+    where_to_hit(bot)   # выстрел Васи
+    print()
+    where_to_hit(bot_2) # выстрел Пети
 
     # Кол-во патронов у ботов равно нулю / всего их 10
     if bot['number of rounds'] == 0 & bot_2['number of rounds'] == 0:
@@ -77,7 +55,6 @@ while (True):
     else:
         print("\nБот " + bot['name'] + "; кол-во патронов - " + str(bot['number of rounds']))
         print("Бот " + bot_2['name'] + "; кол-во патронов - " + str(bot_2['number of rounds']) + '\n')
-
 
 # результаты
 tm.sleep(1)
